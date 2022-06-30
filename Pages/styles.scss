@@ -1,32 +1,39 @@
-$color-principal: #291701;
-$color-headers: #2a1000;
-$color-headers-a: #fff;
-$color-carrusel: rgba(41,23,1,0.75);
-$color-menubar: #ffbc01;
-$color-maincontainer:rgba(0, 0, 0, .5);
-$color-carruselcaptar:rgba(41, 23, 1, 0.75);
-$color-h3:#9e9e9e;
-$color-sidebars:rgba(0, 0, 0, .5);
-$color-headerdiv: #5379fa;
+@mixin tipoletra {
+	font-family: 'Roboto', sans-serif;
+}
 
+$color-oscuro:(
+	$color-principal: #291701,
+	$color-headers: #2a1000,
+	$color-carrusel: rgba(41,23,1,0.75),
+	map-get($color-oscuro, $color-maincontainer):rgba(0, 0, 0, .5),
+	$color-carruselcaptar:rgba(41, 23, 1, 0.75),
+	$color-sidebars:rgba(0, 0, 0, .5)
+);
 
+$color-claro:(
+$color-headers-a: #fff,
+$color-menubar: #ffbc01,
+map-get($color-oscuro, $color-maincontainer):#9e9e9e,
+$color-headerdiv: #5379fa
+);
 
 /* General */
 body {
-	font-family: 'Roboto', sans-serif;
-	color: $color-principal;
+	@include tipoletra;
+	color: map-get($color-oscuro,$color-principal);
 	overflow-x: hidden;
 }
 
 a {
-	color: $color-principal;
+	color: map-get($color-oscuro,$color-principal);
 	font-weight: bold;
 }
 
 
 /* Header */
 header {
-	background-color: $color-headers;
+	background-color: map-get($color-claro, $color-headers);
 	padding-top: 25px;
 }
 
@@ -35,26 +42,28 @@ header {
 }
 
 	.social-header a {
-		color: $color-headers-a;
+		background-color: map-get($color-claro, $color-headers-a);
+
 	}
 
 		.social-header a .fa-inverse {
-			color: $color-principal;
+			color: map-get($color-oscuro,$color-principal);
 		}
 
 .menu-bar {
-	background-color: $color-menubar;
+	background-color: map-get($color-claro,$color-menubar);
 	margin-top: 20px;
 }
 	.menu-bar a {
-		color: $color-principal;
+		color: map-get($color-oscuro,$color-principal);
 		font-size: 16px;
 		font-weight: 500;
 	}
 
 	.menu-bar a:hover {
 		text-decoration: none;
-		color: $color-headers-a;
+		background-color: map-get($color-claro, $color-headers-a);
+
 	}
 
 .menu-list {
@@ -69,7 +78,7 @@ header {
 
 /* Main */
 #main > .container {
-	box-shadow: 0 7px 18px $color-maincontainer;
+	box-shadow: 0 7px 18px map-get($color-oscuro, $color-maincontainer);
 }
 
 /* Carousel */
@@ -113,19 +122,19 @@ header {
 	.carousel-caption a {
 		border-radius: 0;
 		font-weight: bold;
-		color: $color-principal;
+		color: map-get($color-oscuro,$color-principal);
 		border: none;
 	}
 
 /* Info content */
 h3 {
 	font-size: 24px;
-	border-bottom: 1px solid $color-h3;
+	border-bottom: 1px solid map-get($color-oscuro,$color-h3);
 	padding-bottom: 10px;
 	margin-bottom: 15px;
 }
 	h3 i {
-		color: $color-h3;
+		color: map-get($color-claro ,$color-h3);
 	}
 
 p {
@@ -134,7 +143,8 @@ p {
 
 /* Footer */
 footer {
-	background-color: $color-menubar;
+		background-color: map-get($color-claro,$color-menubar);
+
 	font-size: 12px;
 	padding: 10px 0;
 }
@@ -144,19 +154,21 @@ footer {
 	}
 
 	footer a:hover {
-		color: $color-headers-a;
+		background-color: map-get($color-claro, $color-headers-a);
+
 		text-decoration: none;
 	}
 
 
 /* Footer sidebars */
 .sidebars-zone {
-	background-color: $color-headers-a;
+	background-color: map-get($color-claro, $color-headers-a);
+
 	padding-top: 20px;
 }
 	.sidebars-zone h4 {
 		font-size: 20px;
-		border-bottom: 1px solid $color-h3;
+		border-bottom: 1px solid map-get($color-oscuro,$color-maincontainer);
 		padding-bottom: 10px;
 		margin-bottom: 15px;
 	}
@@ -167,7 +179,7 @@ footer {
 	}
 
 	.sidebars-zone a:hover {
-		color: #2a1000;
+		color: map-get($color-oscuro, $color-sidebars);
 	}
 
 
@@ -187,8 +199,9 @@ body{
 	padding: 0;
 	background: $color-headers-a;
 
-	color: $color-headers-a;
-	font-family: Arial;
+	background-color: map-get($color-claro, $color-headers-a);
+
+	@include tipoletra;
 	font-size: 12px;
 }
 
@@ -229,8 +242,9 @@ body{
 
 .header div{
 	float: left;
-	color: $color-headers-a;
-	font-family: 'Exo', sans-serif;
+	background-color: map-get($color-claro, $color-headers-a);
+
+	@include tipoletra;
 	font-size: 30px;
 	font-weight: 200;
 }
@@ -253,10 +267,11 @@ body{
 	width: 250px;
 	height: 30px;
 	background: transparent;
-	border: 1px solid $color-h3;
+	border: 1px solid map-get($color-oscuro,$color-maincontainer);
 	border-radius: 2px;
-	color: $color-headers-a;
-	font-family: 'Exo', sans-serif;
+	background-color: map-get($color-claro, $color-headers-a);
+
+	@include tipoletra;
 	font-size: 16px;
 	font-weight: 400;
 	padding: 4px;
@@ -268,8 +283,9 @@ body{
 	background: transparent;
 	border: 1px solid rgba(255,255,255,0.6);
 	border-radius: 2px;
-	color: $color-headers-a;
-	font-family: 'Exo', sans-serif;
+	background-color: map-get($color-claro, $color-headers-a);
+
+	@include tipoletra;
 	font-size: 16px;
 	font-weight: 400;
 	padding: 4px;
@@ -279,12 +295,12 @@ body{
 .login input[type=button]{
 	width: 260px;
 	height: 35px;
-	background: $color-headers-a;
-	border: 1px solid $color-headers-a;
+	background: map-get($color-claro, $color-headers-a);
+	border: 1px solid map-get($color-claro, $color-headers-a);
 	cursor: pointer;
 	border-radius: 2px;
 	color: #a18d6c;
-	font-family: 'Exo', sans-serif;
+	@include tipoletra;
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
